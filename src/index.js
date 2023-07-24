@@ -6,15 +6,13 @@ import App from "./App";
 const rootElement = document.getElementById('root');
 const root = ReactDOM.createRoot(rootElement);
 
-function AppTwo(){
-  return <h1>Esta es la App 2 solo para pruebas</h1>
-}
+const checklist = ["botas",  "franelas", "pantalones"]
+console.log(checklist);
 
 root.render (
   <React.StrictMode>
   <>
-    <App />
-    <AppTwo/>
+    <App autorizado = {true} />
   </>
   </React.StrictMode>,
   
