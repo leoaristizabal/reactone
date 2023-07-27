@@ -1,19 +1,25 @@
-import React, { useReducer} from "react";
+import React, { useEffect, useState} from "react";
 import './App.css';
 
 //Aqui renderizo todos los componenetes y activo los props que van en cada ccomponente
-function App() {
-  
-const [checked, toggle] = useReducer(
-  checked => !checked,
-  false
-  );
+function App({login}) {
+
+const [datos, setDatos] = useState(null);
+
+useEffect(()=> {
+  fetch(`https://api.github.com/users/${login}`)
+  .then((response)=> response.json()
+  .then(setDatos));
+}, []);
+
+if(datos) {
+  return <div>{JSON.stringify(datos)}</div>
+}
   
   return (
-    <>
-    <input type="checkbox" value= {checked} onChange={toggle} />
-    <p> {checked ? "Marcado" : "Sin Marcar"}</p>
-    </>
+    <div>
+    No hay ningun usuario disponible
+    </div>
   );
 }
 
